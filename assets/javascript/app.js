@@ -8,7 +8,7 @@ var allQuestions = [{
 
 {
     question: "What was Miami quarterback Bob Griese the first NFL football player to wear in a game, in 1977 ?",
-    choices: ["Gloves", "Thigh Pads", "Socks"],
+    choices: ["Gloves", "Thigh Pads", "Socks", "Cup"],
     correctAnswer: 0
 },
 
@@ -66,59 +66,122 @@ var Timer;
 var maxTime = 5
 
 
+function setupOptions() {
+    $('#question').html(parseInt(currentquestion) + 1 + ". " + allQuestions[currentquestion].question);
+    var options = allQuestions[currentquestion].choices;
+    var formHtml = '';
+    for (var i = 0; i < options.length; i++) {
+        formHtml += '<div><input type="radio" name="option" value="' + i + '" id="option' + i + '"><label for="option' + i + '">' +
+            allQuestions[currentquestion].choices[i] + '</label></div><br/>';
+    }
+    $('#form').html(formHtml);
+    $("#option0").prop('checked', true);
+};
+
+function checkAns() {
+    if ($("input[name=option]:checked").val() == allQuestions[currentquestion].correctAnswer) {
+        correctAnswers++;
+    };
+};
+
 $(document).ready(function () {
-    console.log("ready!");
 
-    $("#start").click(function () {
-        $(this).fadeOut();
-        $(this).hide();
-        loadQuestion()
-    });
-});
-
-function countDown() {
-    $("#Timer").html(maxTime)
-    maxTime--
-    // $("#Timer").html(maxTime)
-    if (maxTime < 0) {
-        console.log("timeUp")
-        clearInterval(Timer)
-        nextQuestion()
-        // loadQuestion()
-    }
-
-
-}
-
-
-function loadQuestion() {
-    Timer = setInterval(countDown, 1000)
-    $("#question").append("<h3>" + allQuestions[currentquestion].question + "</h3>")
-    for (var i = 0; i < allQuestions[currentquestion].choices.length; i++) {
-        console.log(allQuestions[i].question)
-        $("#question").append("<button class='answerButton' data-name='" + allQuestions[currentquestion].choices[i] + "'>" + allQuestions[i].choices[i] + "</button>")
-
-    }
-    $("#question").append("<button id= 'next'>Next</button")
-}
-function nextQuestion() {
-    currentquestion++
-    maxTime = 5
-    loadQuestion()
-
-}
-
-
-$(document).click("#next", function () {
-    nextQuestion()
-    // event.preventDefault();
-    // checkAns();
-    // currentquestion++;
-    // $(function () {
-    //     $("#Timer").Clock({
-    //         value: currentquestion
-    //     });
+    // $(".jumbotron").hide();
+    // $('#start').click(function () {
+    //     $(".jumbotron").fadeIn();
+    //     $(this).hide();
     // });
+
+    // $(function() {
+    //   $("#progressbar").progressbar({
+    //     max: allQuestions.length - 1,
+    //     value: 0
+    //   });
+    // })
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        $("#start").click(function () {
+            $(this).fadeOut();
+            $(this).hide();
+            Timer = setInterval(countDown, 1000);
+
+            loadQuestion();
+        });
+    });
+
+    function countDown() {
+        $("#Timer").html(maxTime);
+        maxTime--;
+        $("#Timer").html(maxTime);
+
+        if (currentquestion == allQuestions.length) {
+            // clear the timer
+            // check the answers
+            // etc
+            clearInterval(Timer);
+        }
+
+        if (maxTime < 0) {
+            console.log("timeUp");
+            nextQuestion();
+        }
+    }
+
+
+    function loadQuestion() {
+        $("#question").append("<h3>" + allQuestions[currentquestion].question + "</h3>")
+        for (var i = 0; i < allQuestions[currentquestion].choices.length; i++) {
+            console.log(allQuestions[i].question)
+            $("#question").append("<button class='answerButton' data-name='" + allQuestions[currentquestion].choices[i] + "'>" + allQuestions[i].choices[i] + "</button>")
+
+        }
+        $("#question").append("<button id= 'next'>Next</button")
+    }
+
+    function nextQuestion() {
+        currentquestion++;
+        correctAnswers++;
+        maxTime = 5;
+        loadQuestion();
+
+    }
+
+    // $("#next").click(function () {
+    //     event.preventDefault();
+    //     checkAns();
+    //     currentquestion++;
+    //     $(function () {
+    //         $("#progressbar").progressbar({
+    //             value: currentquestion
+    //         });
+    //     });
+    //     if (currentquestion < allQuestions.length) {
+    //         setupOptions();
+    //         if (currentquestion == allQuestions.length - 1) {
+    //             $('#next').html("Submit");
+    //             $('#next').click(function () {
+    //                 $(".jumbotron").hide();
+    //                 $("#result").html("You correctly answered " + correctAnswers + " out of " + currentquestion + " questions! ").hide();
+    //                 $("#result").fadeIn(1500);
+    //             });
+
+    //         };
+
+    //     };
+    // });
+
+    // $(document).click("#next", function () {
+    //     loadQuestion()
+    //     // event.preventDefault();
+    //     // checkAns();
+    //     // currentquestion++;
+    //     // $(function () {
+    //     //     $("#Timer").Clock({
+    //     //         value: currentquestion
+    //     //     });
+    //     // }); 
 
 
 
