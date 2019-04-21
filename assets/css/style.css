@@ -1,37 +1,50 @@
-.jumbotron{
+.jumbotron {
     background-color: #ffffff;
     border: 1px solid black;
     opacity: 0.6;
     filter: alpha(opacity=60);
 
 }
-.display-2{
-    font-family: Brochure, Freshman ;
+
+#results {
+    font-family: Brochure, Freshman;
     text-align: center;
+    color: #ffffff
 }
-.button{
+
+.display-2 {
+    font-family: Brochure, Freshman;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+.btn-primary btn-lg {
     text-align: center;
 
 }
-.question{
+
+.question {
     font-weight: 900;
 }
-.next
-{
-    display:block;
+
+.next {
+    display: block;
 }
-.form{
-    margin:auto;
+
+.form {
+    margin: auto;
     max-width: 205px;
-  }
+}
 
 
 
 /* article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section { 
-    display:block;
+display:block;
 } */
-body{
-     background-image: url("file:///Users/danmitchell/projects/workinhg/NFL-Wallpaper-For-Mac-Backgrounds.jpg");
+body {
+    background-image: url("file:///Users/danmitchell/projects/workinhg/NFL-Wallpaper-For-Mac-Backgrounds.jpg");
+
 
 }
