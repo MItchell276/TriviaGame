@@ -119,8 +119,8 @@ $(document).ready(function () {
         if (maxTime < 1) {
             console.log("timeUp");
             clearInterval(Timer);
-            // loadQuestion()
-            nextQuestion();
+            nextQuestion()
+
             // stopTimer();
         }
         else if (maxTime > 1) {
@@ -137,6 +137,8 @@ $(document).ready(function () {
         maxTime = 29;
         // loadQuestion();
 
+
+
     }
 
 
@@ -146,12 +148,12 @@ $(document).ready(function () {
         event.preventDefault();
         checkAns();
         currentquestion++;
-        $(function () {
-            $("#progressbar").prepend({
-                max: allQuestions.length - 1,
-                value: 0
-            });
-        });
+        // $(function () {
+        //     $("#progressbar").prepend({
+        //         max: allQuestions.length - 1,
+        //         value: 0
+        //     });
+        // });
         // $(function () {
         //     $("#progressbar").progressbar({
         //         value: currentquestion
